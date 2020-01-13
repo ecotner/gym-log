@@ -1,6 +1,16 @@
 <resources>
+    // Application-level
     <string name="app_name">Gym Log</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_add_workout">Add Workout</string>
-    <string name="text_color_default">black</string>
+
+    // ChooseWorkoutActivity
+    <string name="activity_name_choose">Choose workout</string>
+    <string name="horizontal_scroll_1_name">Favorites</string>
+    <string name="horizontal_scroll_2_name">Recent</string>
+
+    // HistoryActivity
+    <string name="activity_name_history">History</string>
+
+    // StatisticsActivity
+    <string name="activity_name_stats">Statistics</string>
 </resources>
