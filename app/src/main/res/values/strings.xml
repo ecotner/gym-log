@@ -5,12 +5,13 @@
 
     // ChooseWorkoutActivity
     <string name="activity_name_choose">Choose workout</string>
-    <string name="horizontal_scroll_1_name">Favorites</string>
+    <string name="horizontal_scroll_1_name">Favorites (not implemented)</string>
     <string name="horizontal_scroll_2_name">Recent</string>
+    <string name="button_all_workouts_name">All workouts (not implemented)</string>
 
     // HistoryActivity
-    <string name="activity_name_history">History</string>
+    <string name="activity_name_history">History (not implemented)</string>
 
     // StatisticsActivity
-    <string name="activity_name_stats">Statistics</string>
+    <string name="activity_name_stats">Statistics (not implemented)</string>
 </resources>

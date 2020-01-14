@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.gymlog.R;
 
@@ -24,9 +25,13 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUi();
-        for (int i=0; i<20; i++)
-            makeText();
-
+        LinearLayout parent = (LinearLayout) findViewById(R.id.recents_layout);
+        CardView card = null;
+        for (int i=0; i<20; i++) {
+            card = makeCard("haha derp this is card #" + i);
+//            ((TextView) card.getChildAt(0)).setText("asdf");
+            parent.addView(card);
+        }
     }
 
     private void setUi() {
@@ -35,23 +40,22 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void makeText() {
-        // Make some text
+    private CardView makeCard(String str) {
+        // Make card view
         TextView text = new TextView(this);
-        text.setText("asdf");
-        // Set margins on the text
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        params.setMargins(10, 10, 10, 10);
-        text.setLayoutParams(params);
-        // Add text to parent layout
-        LinearLayout parent = (LinearLayout) findViewById(R.id.recents_layout);
-        parent.addView(text);
-    }
+        text.setText(str);
+        CardView card = new CardView(this);
+        card.addView(text);
 
-    private void addCard(int parentId) {
-        // Do all the same stuff as above, but with cards?
+        // Format card
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                getResources().getDimensionPixelSize(R.dimen.default_card_width),
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        int p = getResources().getDimensionPixelSize(R.dimen.default_card_padding);
+        params.setMargins(p, p, p, p);
+        card.setLayoutParams(params);
+
+        return card;
     }
 }
