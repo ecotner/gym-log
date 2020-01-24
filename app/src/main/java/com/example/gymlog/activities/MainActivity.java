@@ -23,8 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new Repository(getApplicationContext());
-        db.insertActivity("derp", 5, 10);
+        db.insertActivity("herp", 5, 10);
+        db.insertActivity("asdf", 50, 100);
+        db.insertActivity("pooping", 10000, 1);
         List<WorkoutActivityEntity> acts = db.getAllActivities();
+//        db.db.getOpenHelper().close();
         Log.d("DATABASE", "number of entries: " + acts.size());
         Log.d("DATABASE", acts.toString());
     }
