@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = new Repository(getApplicationContext());
-        db.insertActivity("herp", 5, 10);
-        db.insertActivity("asdf", 50, 100);
-        db.insertActivity("pooping", 10000, 1);
-        List<WorkoutActivityEntity> acts = db.getAllActivities();
-//        db.db.getOpenHelper().close();
-        Log.d("DATABASE", "number of entries: " + acts.size());
-        Log.d("DATABASE", acts.toString());
+        // all this stuff is to temporarily populate the database; delete it later!
+//        db = new Repository(getApplicationContext());
+//        db.insertActivity("herp", 5, 10);
+//        db.insertActivity("asdf", 50, 100);
+//        db.insertActivity("pooping", 255, 1);
+//        List<WorkoutActivityEntity> acts = db.getAllActivities();
+//        Log.d("DATABASE", "number of entries: " + acts.size());
+//        Log.d("DATABASE", acts.toString());
     }
 
     public void displayChooseWorkoutActivity(View view) {

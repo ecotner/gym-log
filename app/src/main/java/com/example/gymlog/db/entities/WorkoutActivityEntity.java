@@ -20,12 +20,12 @@ public class WorkoutActivityEntity {
     public long timestamp;
 
     @ColumnInfo
-    public int weight;
+    public double weight;
 
     @ColumnInfo
     public int reps;
 
-    public WorkoutActivityEntity(String wtype, int weight, int reps) {
+    public WorkoutActivityEntity(String wtype, double weight, int reps) {
 //        assert weight >= 0;
 //        assert reps >= 0;
         this.wtype = wtype;

@@ -54,4 +54,7 @@ public interface AccessDao {
         "ORDER BY x.wcount DESC "
     )
     public WorkoutActivityEntity[] getFrequentActivitiesByType(int N);
+
+    @Query("SELECT DISTINCT wtype FROM workout_activity ORDER BY wtype ASC")
+    public String[] getDistinctWtypes();
 }

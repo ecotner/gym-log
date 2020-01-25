@@ -9,6 +9,12 @@
     <string name="horizontal_scroll_2_name">Recent</string>
     <string name="button_all_workouts_name">All workouts (not implemented)</string>
 
+    // EditWorkoutActivity
+    <string name="activity_name_edit">Edit/confirm workout</string>
+    <string name="wtype_confirmation_text">Workout type</string>
+    <string name="weight_confirmation_text">Weight</string>
+    <string name="reps_confirmation_text">Reps</string>
+
     // HistoryActivity
     <string name="activity_name_history">History (not implemented)</string>
 

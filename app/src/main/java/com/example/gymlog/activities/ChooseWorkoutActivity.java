@@ -1,16 +1,9 @@
 package com.example.gymlog.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import com.example.gymlog.R;
 import com.example.gymlog.db.Repository;
 import com.example.gymlog.db.entities.WorkoutActivityEntity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -35,11 +29,24 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         setUi();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUi();
+    }
+
     private void setUi() {
         setContentView(R.layout.activity_choose_workout);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         populateRecentCards(5);
+        FloatingActionButton fab = findViewById(R.id.newWorkoutFAB);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newWorkoutFABClicked();
+            }
+        });
     }
 
     private void populateRecentCards(int N) {
@@ -57,7 +64,7 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
 
     private CardView makeCard(WorkoutActivityEntity a) {
         final String wtype = a.wtype;
-        int weight = a.weight;
+        double weight = a.weight;
         int reps = a.reps;
         String msg = wtype + "\nWeight: " + weight + "\nReps: " + reps;
         // Make card view
@@ -96,6 +103,11 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         intent.putExtra("weight", a.weight);
         intent.putExtra("reps", a.reps);
         startActivity(intent);
+    }
+
+    public void newWorkoutFABClicked() {
+        WorkoutActivityEntity a = new WorkoutActivityEntity("none", 0, 1);
+        displayEditWorkoutActivity(a);
     }
 
 }

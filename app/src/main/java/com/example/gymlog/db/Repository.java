@@ -8,7 +8,6 @@ import androidx.room.Room;
 import com.example.gymlog.db.entities.WorkoutActivityEntity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Repository {
@@ -31,7 +30,7 @@ public class Repository {
         }).start();
     }
 
-    public void insertActivity(String type, int weight, int reps) {
+    public void insertActivity(String type, double weight, int reps) {
         WorkoutActivityEntity activity = new WorkoutActivityEntity(type, weight, reps);
         insertActivity(activity);
     }
@@ -91,5 +90,24 @@ public class Repository {
             Log.w("DATABASE", "getRecentActivitiesByType interrupted");
         }
         return activities;
+    }
+
+    public List<String> getDistinctWtypes() {
+        final List<String> wtypes = new ArrayList<>();
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                String[] wtypes_str = db.accessDao().getDistinctWtypes();
+                for (String wt: wtypes_str)
+                    wtypes.add(wt);
+            }
+        };
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            Log.w("DATABASE", "getDistinctWtypes interrupted");
+        }
+        return wtypes;
     }
 }

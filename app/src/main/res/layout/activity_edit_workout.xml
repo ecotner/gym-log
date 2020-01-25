@@ -6,11 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".activities.EditWorkoutActivity">
 
+    <android.widget.NumberPicker
+        android:id="@+id/weightPicker"
+        android:layout_width="273dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightConfirmationTextView">
+
+    </android.widget.NumberPicker>
+
+    <android.widget.NumberPicker
+        android:id="@+id/repsPicker"
+        android:layout_width="273dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repsConfirmationTextView">
+
+    </android.widget.NumberPicker>
+
     <TextView
-        android:id="@+id/stupidTextBox"
+        android:id="@+id/weightConfirmationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="144dp" />
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        android:text="@string/weight_confirmation_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/repsConfirmationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        android:text="@string/reps_confirmation_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightPicker" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/confirmWorkoutFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_check_white_24dp"
+        android:focusable="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/wtypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_horizontal_margin"
+            android:layout_marginLeft="@dimen/default_horizontal_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
+            android:text="@string/wtype_confirmation_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/wtypeSpinner"
+            android:layout_width="223dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/default_vertical_margin"
+            android:layout_marginEnd="@dimen/default_horizontal_margin"
+            android:layout_marginRight="@dimen/default_horizontal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

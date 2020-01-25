@@ -9,14 +9,16 @@
         android:roundIcon="@mipmap/gym_log_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activities.EditWorkoutActivity"
-            android:label="Edit/confirm workout"
+            android:label="@string/activity_name_edit"
             android:parentActivityName=".activities.ChooseWorkoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.ChooseWorkoutActivity"
             android:label="@string/activity_name_choose"
@@ -24,20 +26,19 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>
