@@ -4,8 +4,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Formatter;
+import java.util.TimeZone;
 
 @Entity(tableName = "workout_activity")
 public class WorkoutActivityEntity {
@@ -39,7 +44,15 @@ public class WorkoutActivityEntity {
                 ", reps=" + reps + ")";
     }
 
-    public String getDateTime() {
-        return String.valueOf(this.timestamp);
+    // TODO
+    public String[] getDateTime() {
+        String[] dt_str = new String[2];
+        Instant instant = Instant.ofEpochMilli(1000L * this.timestamp);
+        LocalDateTime dt = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("u-M-d");
+        dt_str[0] = dt.format(f);
+        f = DateTimeFormatter.ofPattern("HH:mm:ss");
+        dt_str[1] = dt.format(f);
+        return dt_str;
     }
 }

@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import com.example.gymlog.R;
 import com.example.gymlog.db.Repository;
@@ -22,6 +25,16 @@ import java.util.List;
 public class EditWorkoutActivity extends AppCompatActivity {
 
     public Repository db;
+    static List<Double> weightList = new ArrayList<>();
+    static {
+        // Create list of valid weights
+        for (double w=0; w<10; w+=0.5)
+            weightList.add(w);
+        for (double w=10; w<25; w+=2.5)
+            weightList.add(w);
+        for (double w=25; w<=300; w+=5)
+            weightList.add(w);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +61,6 @@ public class EditWorkoutActivity extends AppCompatActivity {
         });
     }
 
-    // TODO
     public void populateWorkoutTypeSpinner(String wtype) {
         // Get the spinner
         Spinner sp = findViewById(R.id.wtypeSpinner);
@@ -56,8 +68,8 @@ public class EditWorkoutActivity extends AppCompatActivity {
         db = new Repository(getApplicationContext());
         List<String> wtypes = db.getDistinctWtypes();
         // Ensure "None" is there by default
-        wtypes.add(0, "none");
-        ArrayAdapter<String> spa = new ArrayAdapter<String>(
+        wtypes.add(0, "New");
+        ArrayAdapter<String> spa = new ArrayAdapter<>(
                 this,
                 R.layout.support_simple_spinner_dropdown_item,
                 wtypes
@@ -65,26 +77,40 @@ public class EditWorkoutActivity extends AppCompatActivity {
         sp.setAdapter(spa);
         // Set value to method argument
         sp.setSelection(spa.getPosition(wtype));
+        // If
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String val = parent.getAdapter().getItem(position).toString();
+                EditText txt = findViewById(R.id.wtypeInputEditText);
+                if (val == "New") {
+                    // Make text input visible
+                    Log.d("SPINNER", "Making visible...");
+                    txt.setVisibility(View.VISIBLE);
+                } else {
+                    // Make text input invisible
+                    Log.d("SPINNER", "Making INvisible...");
+                    txt.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void populateWeightPicker(double currentWeight) {
         NumberPicker np = findViewById(R.id.weightPicker);
-        // Create list of valid weights
-        List<Double> weights = new ArrayList<>();
-        for (double w=0; w<10; w+=0.5)
-            weights.add(w);
-        for (double w=10; w<25; w+=2.5)
-            weights.add(w);
-        for (double w=25; w<=300; w+=5)
-            weights.add(w);
         np.setMinValue(0);
-        np.setMaxValue(weights.size()-1);
-        String[] vals = new String[weights.size()];
-        for (int i=0; i<weights.size(); i++) {
-            vals[i] = weights.get(i).toString();
+        np.setMaxValue(weightList.size()-1);
+        String[] vals = new String[weightList.size()];
+        for (int i=0; i<weightList.size(); i++) {
+            vals[i] = weightList.get(i).toString();
         }
         np.setDisplayedValues(vals);
-        np.setValue(weights.indexOf(currentWeight));
+        np.setValue(weightList.indexOf(currentWeight));
         np.setWrapSelectorWheel(false);
 //        return np;
     }
@@ -98,11 +124,18 @@ public class EditWorkoutActivity extends AppCompatActivity {
 //        return np;
     }
 
-    // TODO
     public void confirmWorkoutFABClicked() {
         // Grab the workout information from pickers/spinners
         Spinner sp = findViewById(R.id.wtypeSpinner);
         String wtype = sp.getSelectedItem().toString();
+        if (wtype.equals("New")) {
+            EditText et = findViewById(R.id.wtypeInputEditText);
+            wtype = et.getText().toString();
+            if (wtype.equals("")) {
+                Log.d("FAB", "gotta have something in the box");
+                return;
+            }
+        }
         Log.d("FABCLICK", "wtype: " + wtype);
         NumberPicker np = findViewById(R.id.weightPicker);
         int i = np.getValue();
@@ -116,7 +149,13 @@ public class EditWorkoutActivity extends AppCompatActivity {
         WorkoutActivityEntity activityEntity = new WorkoutActivityEntity(wtype, weight, reps);
         db = new Repository(getApplicationContext());
         db.insertActivity(activityEntity);
-        // Go up to parent Activity
+        // Done here; go up to parent Activity
         finish();
+    }
+
+    /* TODO: make some kind of listener that determines if a "New" workout type has been selected
+       and creates an input field to allow them to put in the name. */
+    public void wtypeListener() {
+
     }
 }

@@ -36,4 +36,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseWorkoutActivity.class);
         startActivity(intent);
     }
+
+    // TODO
+    public void displayHistoryActivity(View view) {
+
+    }
+
+    // TODO
+    public void displayStatisticsActivity(View view) {
+
+    }
 }

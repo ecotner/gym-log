@@ -36,6 +36,7 @@ public interface AccessDao {
     )
     public WorkoutActivityEntity[] getRecentActivitiesByType(int N);
 
+    // TODO: weight frequency by recency?
     @Query(
         "SELECT wa.* " +
         "FROM workout_activity AS wa " +

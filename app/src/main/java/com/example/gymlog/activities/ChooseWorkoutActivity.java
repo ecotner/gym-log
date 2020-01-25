@@ -2,6 +2,7 @@ package com.example.gymlog.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -80,13 +81,18 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         final String wtype = a.wtype;
         double weight = a.weight;
         int reps = a.reps;
-        String msg = wtype + "\nWeight: " + weight + "\nReps: " + reps;
+        String[] dt = a.getDateTime();
+        String date = dt[0];
+        String time = dt[1];
+        String msg = wtype
+                + "\nWeight: " + weight + "\nReps: " + reps
+                + "\n" + date + "\n" + time;
         // Make card view
         TextView text = new TextView(this);
         text.setText(msg);
         CardView card = new CardView(this);
         card.addView(text);
-        card.setTag(a); // attach the activity to the card
+        card.setTag(a); // attach the activity to the card too
 
         // Format card
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -120,7 +126,7 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
     }
 
     public void newWorkoutFABClicked() {
-        WorkoutActivityEntity a = new WorkoutActivityEntity("none", 0, 1);
+        WorkoutActivityEntity a = new WorkoutActivityEntity("New", 0, 1);
         displayEditWorkoutActivity(a);
     }
 
