@@ -110,4 +110,23 @@ public class Repository {
         }
         return wtypes;
     }
+
+    public List<WorkoutActivityEntity> getFrequentActivitiesByType(final int N) {
+        final List<WorkoutActivityEntity> activities = new ArrayList<>();
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                WorkoutActivityEntity[] acts = db.accessDao().getFrequentActivitiesByType(N);
+                for (WorkoutActivityEntity e: acts)
+                    activities.add(e);
+            }
+        };
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            Log.w("DATABASE", "getRecentActivitiesByType interrupted");
+        }
+        return activities;
+    }
 }

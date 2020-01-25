@@ -39,6 +39,7 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_workout);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        populateFavoriteCards(5);
         populateRecentCards(5);
         FloatingActionButton fab = findViewById(R.id.newWorkoutFAB);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +50,23 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         });
     }
 
+    private void populateFavoriteCards(int N) {
+        LinearLayout parent = (LinearLayout) findViewById(R.id.favorites_layout);
+        db = new Repository(getApplicationContext());
+        List<WorkoutActivityEntity> activities = db.getFrequentActivitiesByType(N);
+        favoriteActivities = activities;
+        CardView card;
+        for (int i=0; i<activities.size(); i++) {
+            WorkoutActivityEntity a = activities.get(i);
+            card = makeCard(a);
+            parent.addView(card);
+        }
+    }
+
     private void populateRecentCards(int N) {
         LinearLayout parent = (LinearLayout) findViewById(R.id.recents_layout);
         db = new Repository(getApplicationContext());
-        List<WorkoutActivityEntity> activities = db.getRecentActivitiesByType(5);
+        List<WorkoutActivityEntity> activities = db.getRecentActivitiesByType(N);
         recentActivities = activities;
         CardView card;
         for (int i=0; i<activities.size(); i++) {
