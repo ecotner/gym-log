@@ -18,7 +18,9 @@ public class Repository {
         this.db = Room.databaseBuilder(
             context,
             AppDatabase.class,
-            this.DB_NAME).build();
+            this.DB_NAME)
+        .createFromAsset("gymlog_db")
+        .build();
     }
 
     public void insertActivity(final WorkoutActivityEntity activity) {

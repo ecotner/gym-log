@@ -30,9 +30,9 @@ public class EditWorkoutActivity extends AppCompatActivity {
         // Create list of valid weights
         for (double w=0; w<10; w+=0.5)
             weightList.add(w);
-        for (double w=10; w<25; w+=2.5)
+        for (double w=10; w<30; w+=1)
             weightList.add(w);
-        for (double w=25; w<=300; w+=5)
+        for (double w=30; w<=300; w+=5)
             weightList.add(w);
     }
 
@@ -85,11 +85,9 @@ public class EditWorkoutActivity extends AppCompatActivity {
                 EditText txt = findViewById(R.id.wtypeInputEditText);
                 if (val == "New") {
                     // Make text input visible
-                    Log.d("SPINNER", "Making visible...");
                     txt.setVisibility(View.VISIBLE);
                 } else {
-                    // Make text input invisible
-                    Log.d("SPINNER", "Making INvisible...");
+                    // Hide input field
                     txt.setVisibility(View.GONE);
                 }
             }

@@ -15,6 +15,9 @@
     <string name="weight_confirmation_text">Weight</string>
     <string name="reps_confirmation_text">Reps</string>
 
+    // WeightActivity
+    <string name="activity_name_weight">Weight (not implemented></string>
+
     // HistoryActivity
     <string name="activity_name_history">History (not implemented)</string>
 

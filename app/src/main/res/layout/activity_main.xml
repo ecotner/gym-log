@@ -26,14 +26,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="@dimen/default_horizontal_margin"
         android:layout_marginTop="@dimen/default_vertical_margin"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="@dimen/default_horizontal_margin"
         android:text="@string/activity_name_history"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addActivityButton" />
+        app:layout_constraintTop_toBottomOf="@+id/weightButton" />
 
     <Button
         android:id="@+id/statisticsButton"
@@ -48,5 +47,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recentActivitiesButton" />
+
+    <Button
+        android:id="@+id/weightButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_horizontal_margin"
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        android:text="@string/activity_name_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addActivityButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
