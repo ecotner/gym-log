@@ -1,7 +1,10 @@
 package com.example.gymlog.db.entities;
 
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.time.Instant;
@@ -16,43 +19,38 @@ import java.util.TimeZone;
 public class WorkoutActivityEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    public int id;
+    public Integer id;
 
     @ColumnInfo
-    public String wtype;
+    public Long timestamp;
 
     @ColumnInfo
-    public long timestamp;
+    public Double weight;
 
     @ColumnInfo
-    public double weight;
+    public Integer reps;
 
     @ColumnInfo
-    public int reps;
+    public Integer wtype_id;
 
-    public WorkoutActivityEntity(String wtype, double weight, int reps) {
-//        assert weight >= 0;
-//        assert reps >= 0;
-        this.wtype = wtype;
-        this.timestamp = System.currentTimeMillis() / 1000L;
-        this.weight = weight;
-        this.reps = reps;
-    }
+    @ColumnInfo
+    public Integer duration_sec;
 
-    public String toString() {
-        return "WorkoutActivityEntity(type=" + wtype + ", weight=" + weight +
-                ", reps=" + reps + ")";
-    }
+    @ColumnInfo
+    public Double distance_mi;
 
-    // TODO
-    public String[] getDateTime() {
-        String[] dt_str = new String[2];
-        Instant instant = Instant.ofEpochMilli(1000L * this.timestamp);
-        LocalDateTime dt = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("u-M-d");
-        dt_str[0] = dt.format(f);
-        f = DateTimeFormatter.ofPattern("HH:mm:ss");
-        dt_str[1] = dt.format(f);
-        return dt_str;
-    }
+
+//    public WorkoutActivityEntity(double weight, int reps) {
+////        this.wtype = wtype;
+//        this.timestamp = System.currentTimeMillis() / 1000L;
+//        this.weight = weight;
+//        this.reps = reps;
+//    }
+
+//    public WorkoutActivityEntity(String wtype, int duration_sec, double distance_mi) {
+//        this.wtype = wtype;
+//        this.timestamp = System.currentTimeMillis() / 1000L;
+//        this.duration_sec = duration_sec;
+//        this.distance_mi = distance_mi;
+//    }
 }
